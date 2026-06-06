@@ -39,7 +39,7 @@ const GameplayController = {
     if(node.type==='intersection'){this._iState='window_open';this._wTimer=CONFIG.movement.turnWindowDuration;this._reqTurn=node.turn;UIController.showIntersectionHint();}
     if(node.isDestination){this._dState='window_open';this._dTimer=CONFIG.movement.turnWindowDuration*1.5;UIController.showDestinationHint(node.destLandmarkId);}
   },
-  _resolveIntersection(sw){this._iState='handled';UIController.hideIntersectionHint();if(sw!==this._reqTurn)this._fail('Wrong turn!');},
+  _resolveIntersection(sw){this._iState='handled';UIController.hideIntersectionHint();if(sw===this._reqTurn){this._facing=Utils.turnDirection(this._facing,sw);}else{this._fail('Wrong turn!');}},
   _closeWindow(){this._iState='handled';UIController.hideIntersectionHint();if(this._reqTurn!==null)UIController.showMissedIntersection(()=>this._fail('Missed intersection!'));},
   _resolveDest(sw){this._dState='done';UIController.hideDestinationHint();if(sw===this._dSide)SceneController.triggerLevelSuccess();else this._fail('Wrong side — missed destination!');},
   _fail(reason){GameState.failReason=reason;GameState.setState(STATES.LEVEL_FAIL);SceneController.showFail(reason);},

@@ -17,7 +17,7 @@ const Utils = {
   },
 
   directionToAngle(dir) {
-    const map = { north: Math.PI, east: -Math.PI / 2, south: 0, west: Math.PI / 2 };
+    const map = { north: Math.PI, east: Math.PI / 2, south: 0, west: -Math.PI / 2 };
     return map[dir] || 0;
   },
 

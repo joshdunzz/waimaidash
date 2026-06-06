@@ -2,8 +2,8 @@ const Input = {
   _pendingSwipe: null, _touchStartX: 0, _touchStartY: 0, _touchStartTime: 0,
   init() {
     window.addEventListener('keydown', e => {
-      if(e.key==='ArrowLeft') this._pendingSwipe='left';
-      if(e.key==='ArrowRight') this._pendingSwipe='right';
+      if(e.key==='ArrowLeft')  { e.preventDefault(); this._pendingSwipe='left'; }
+      if(e.key==='ArrowRight') { e.preventDefault(); this._pendingSwipe='right'; }
     });
     window.addEventListener('touchstart', e => {
       const t=e.touches[0]; this._touchStartX=t.clientX; this._touchStartY=t.clientY; this._touchStartTime=Date.now();
