@@ -53,21 +53,21 @@ const MapRenderer = {
 
     // --- Draw city grid ---
 
-    // Road background
-    ctx.fillStyle = CONFIG.map.roadColor || '#374151';
+    // Road background — mid-grey so dark building blocks stand out clearly
+    ctx.fillStyle = '#475569';
     ctx.fillRect(offX, offZ, worldW * scale, worldD * scale);
 
-    // Buildings in every block cell
+    // Building blocks in every cell — dark fill, road gutters visible between
     const blockCols = Math.round(worldW / B);
     const blockRows = Math.round(worldD / B);
-    const buildingInset = cellPx * 0.12;
+    const buildingInset = cellPx * 0.15;
 
     for (let gx = 0; gx < blockCols; gx++) {
       for (let gz = 0; gz < blockRows; gz++) {
         const wx = gMinX + gx * B;
         const wz = gMinZ + gz * B;
         const { sx, sy } = ts(wx, wz);
-        ctx.fillStyle = '#1e293b';
+        ctx.fillStyle = '#0f172a';
         ctx.fillRect(
           sx + buildingInset,
           sy + buildingInset,
