@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>外卖冲刺 / Delivery Dash</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="game-root">
+  <div id="three-container"></div>
+  <div id="screen-boot" class="screen">
+    <div class="game-title">外卖冲刺</div>
+    <div class="game-subtitle">Delivery Dash<br/><span style="color:#94a3b8;font-size:0.75rem">Study the route. Phone dies. Trust your memory.</span></div>
+    <button id="btn-start" class="btn btn-primary">Start Riding</button>
+    <div style="margin-top:16px;font-size:0.7rem;color:#4a5568;text-align:center;">Swipe left/right to turn<br/>Arrow keys on desktop</div>
+  </div>
+  <div id="screen-intro-order" class="screen hidden">
+    <div id="level-label" style="font-size:0.7rem;letter-spacing:3px;color:#00e5ff;margin-bottom:12px;text-transform:uppercase;"></div>
+    <div class="order-card">
+      <div class="order-icon">🍗</div>
+      <div class="order-title">New Delivery Order</div>
+      <div class="order-body" id="order-text"></div>
+      <div class="order-dest-label">Deliver to:</div>
+      <div id="dest-preview"></div>
+    </div>
+    <button id="btn-begin-study" class="btn btn-primary" style="margin-top:20px;">Study Route →</button>
+    <div style="margin-top:10px;font-size:0.7rem;color:#4a5568;text-align:center;">You have limited time to memorize the map</div>
+  </div>
+  <div id="screen-map-study" class="screen hidden">
+    <div class="map-header"><div class="map-title">Memorize Route</div><div id="map-timer"></div></div>
+    <div id="map-container"><canvas id="map-canvas"></canvas></div>
+  </div>
+  <div id="screen-phone-dies" class="screen hidden">
+    <div class="phone-dies-icon">🔋</div>
+    <div style="font-size:1.2rem;font-weight:bold;color:#ef4444;letter-spacing:4px;">BATTERY DEAD</div>
+    <div class="phone-dies-text">Ride from memory...</div>
+  </div>
+  <div id="screen-driving" class="screen hidden">
+    <div id="hud"><div id="level-label-hud"></div><div class="hud-tip">Swipe to turn</div></div>
+    <div id="intersection-hint" class="hidden">⟵ Intersection ⟶</div>
+    <div id="destination-hint" class="hidden">⚑ DESTINATION — SWIPE!</div>
+    <div id="missed-msg" class="hidden">Missed intersection!</div>
+    <div class="swipe-guide"><div class="swipe-arrow left">←</div><div class="swipe-arrow right">→</div></div>
+  </div>
+  <div id="screen-level-success" class="screen hidden">
+    <div class="success-icon">🎉</div>
+    <div class="success-title">订单完成</div>
+    <div class="success-sub">Delivery Complete!</div>
+    <button id="btn-next" class="btn btn-success" style="margin-top:24px;">Next Level →</button>
+    <button id="btn-finish" class="btn btn-primary hidden" style="margin-top:24px;">See Results →</button>
+  </div>
+  <div id="screen-level-fail" class="screen hidden">
+    <div class="fail-icon">💥</div>
+    <div class="fail-title">Order Failed</div>
+    <div id="fail-reason"></div>
+    <button id="btn-retry" class="btn btn-danger" style="margin-top:24px;">Retry Level</button>
+  </div>
+  <div id="screen-game-complete" class="screen hidden">
+    <div style="font-size:3rem;text-align:center;">🏆</div>
+    <div class="complete-title">ALL ORDERS<br/>COMPLETE!</div>
+    <div style="color:#94a3b8;font-size:0.8rem;text-align:center;letter-spacing:2px;margin-top:8px;">Legendary rider. True memory master.</div>
+    <button id="btn-restart" class="btn btn-primary" style="margin-top:28px;">Play Again</button>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/gameState.js"></script>
+<script src="js/input.js"></script>
+<script src="js/routeGenerator.js"></script>
+<script src="js/mapRenderer.js"></script>
+<script src="js/worldRenderer.js"></script>
+<script src="js/gameplayController.js"></script>
+<script src="js/uiController.js"></script>
+<script src="js/sceneController.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

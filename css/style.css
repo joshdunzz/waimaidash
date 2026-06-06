@@ -1,0 +1,61 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0a0a1a; --surface: #12122a; --accent: #00e5ff; --text: #e2e8f0;
+  --muted: #94a3b8; --danger: #ef4444; --success: #22c55e;
+  --font: 'Courier New', Courier, monospace;
+}
+html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: var(--font); user-select: none; -webkit-user-select: none; }
+#game-root { position: relative; width: 100%; height: 100%; max-width: 480px; margin: 0 auto; overflow: hidden; }
+.screen { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; z-index: 10; background: var(--bg); }
+.screen.hidden { display: none; }
+#three-container { position: absolute; inset: 0; z-index: 1; }
+#three-container canvas { display: block; width: 100% !important; height: 100% !important; }
+#screen-boot .game-title { font-size: 2rem; font-weight: bold; color: var(--accent); text-align: center; margin-bottom: 8px; letter-spacing: 2px; }
+#screen-boot .game-subtitle { color: var(--muted); font-size: 0.85rem; text-align: center; margin-bottom: 32px; line-height: 1.6; }
+#screen-intro-order { gap: 20px; }
+.order-card { background: var(--surface); border: 1px solid #1e3a5f; border-radius: 12px; padding: 24px; width: 100%; max-width: 340px; }
+.order-card .order-icon { font-size: 2.5rem; text-align: center; margin-bottom: 12px; }
+.order-card .order-title { color: var(--accent); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.order-card .order-body { font-size: 1rem; line-height: 1.5; margin-bottom: 12px; }
+.order-card .order-dest-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
+#dest-preview { font-size: 1.1rem; font-weight: bold; }
+#screen-map-study { padding: 0; background: var(--bg); }
+#screen-map-study .map-header { position: absolute; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; background: rgba(10,10,26,0.85); z-index: 20; backdrop-filter: blur(4px); }
+#screen-map-study .map-title { font-size: 0.75rem; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; }
+#map-timer { font-size: 1.4rem; font-weight: bold; min-width: 40px; text-align: right; }
+#map-container { position: absolute; inset: 48px 0 0 0; }
+#map-canvas { display: block; width: 100%; height: 100%; }
+#screen-phone-dies { background: #000; gap: 16px; }
+.phone-dies-icon { font-size: 4rem; animation: flicker 0.3s steps(1) 3; }
+.phone-dies-text { font-size: 1rem; color: var(--muted); letter-spacing: 4px; text-transform: uppercase; animation: fadeIn 0.5s ease 0.6s both; }
+@keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+#screen-driving { background: transparent; pointer-events: none; justify-content: flex-start; }
+#hud { position: absolute; top: 0; left: 0; right: 0; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.4); z-index: 20; backdrop-filter: blur(2px); }
+#level-label { font-size: 0.75rem; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; }
+.hud-tip { font-size: 0.65rem; color: var(--muted); }
+#intersection-hint { position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); background: rgba(0,229,255,0.15); border: 1px solid var(--accent); border-radius: 8px; padding: 10px 24px; font-size: 0.8rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; animation: pulse 0.8s ease-in-out infinite; pointer-events: none; }
+#destination-hint { position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); background: rgba(255,68,68,0.15); border: 1px solid var(--danger); border-radius: 8px; padding: 10px 24px; font-size: 0.85rem; color: var(--danger); font-weight: bold; letter-spacing: 2px; text-transform: uppercase; animation: pulse 0.5s ease-in-out infinite; pointer-events: none; }
+#missed-msg { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); background: rgba(239,68,68,0.9); border-radius: 10px; padding: 16px 32px; font-size: 1.1rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #fff; text-align: center; pointer-events: none; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+#screen-level-success { gap: 20px; background: rgba(10,10,26,0.95); }
+.success-icon { font-size: 3rem; text-align: center; }
+.success-title { font-size: 1.8rem; font-weight: bold; color: var(--success); text-align: center; letter-spacing: 4px; }
+.success-sub { color: var(--muted); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; text-align: center; }
+#screen-level-fail { gap: 20px; background: rgba(10,10,26,0.97); }
+.fail-icon { font-size: 3rem; text-align: center; }
+.fail-title { font-size: 1.6rem; font-weight: bold; color: var(--danger); text-align: center; letter-spacing: 3px; }
+#fail-reason { color: var(--muted); font-size: 0.85rem; text-align: center; padding: 8px 16px; border: 1px solid #2a2a4a; border-radius: 6px; }
+#screen-game-complete { gap: 20px; }
+.complete-title { font-size: 1.6rem; font-weight: bold; color: var(--accent); text-align: center; letter-spacing: 3px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 32px; border: none; border-radius: 8px; font-family: var(--font); font-size: 0.9rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: opacity 0.15s, transform 0.1s; -webkit-tap-highlight-color: transparent; min-width: 180px; }
+.btn:active { transform: scale(0.97); opacity: 0.85; }
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-success { background: var(--success); color: #000; }
+.hidden { display: none !important; }
+.swipe-guide { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 24px; pointer-events: none; }
+.swipe-arrow { font-size: 1.4rem; color: rgba(255,255,255,0.2); animation: floatLR 2s ease-in-out infinite; }
+.swipe-arrow.right { animation-delay: 0.5s; }
+@keyframes floatLR { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+@media (hover: hover) { .hud-tip::after { content: ' ← →'; } }
